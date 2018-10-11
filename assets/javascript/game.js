@@ -50,6 +50,12 @@ function updateDisplay() {
     document.getElementById("lettersGuessed").innerHTML = wrongLetters
 }
 
+//Function to ensure key is part of alphabet
+function isLetter(str) {
+    return str.length === 1 && str.match(/[a-z]/i);
+    // return str.toLowerCase() != str.toUpperCase();
+  }
+
 //Function to update number of guesses
 function updateGuesses() {
     document.getElementById("guesses").innerHTML = "Guesses: " + numGuesses
@@ -62,10 +68,13 @@ function isWordGuessed() {
             return false;
         }
     }
-    numWins++
-    console.log(numWins);
-    document.getElementById("wins").innerHTML = "Wins: " + numWins;
     return true;
+}
+
+//Function to update wins
+function updateWins() {
+    numWins++
+    document.getElementById("wins").innerHTML = "Wins: " + numWins;
 }
 
 //Function to wait ms milliseconds
@@ -105,8 +114,9 @@ updateDisplay();
 document.onkeyup = function(event) {
 
 //If this is a letter that has not been previously guessed
-    if (lettersGuessed.includes(event.key) === false) {
+    if (lettersGuessed.includes(event.key) === false && isLetter(event.key)) {
         guess = event.key;
+        guess = guess.toLowerCase();
 
 //Add the letter to list of guessed letters
         lettersGuessed = lettersGuessed + guess
@@ -150,9 +160,11 @@ document.onkeyup = function(event) {
     if (isWordGuessed()) {
         var cheer = document.getElementById("cheer");
         playSound(cheer);
+        updateWins();
+        newGame();
     }
 
-    if (isWordGuessed() || numGuesses === 0) {
+    if (numGuesses === 0) {
         newGame();
     }
 
