@@ -1,7 +1,7 @@
 // VARIABLES
 
 //The array of words that will be chosen at random
-var words = ["test", "hello", "world"]
+var words = ["defender", "forward", "fullback", "goalie", "offside", "coach", "manager", "goalkeeper", "keeper", "goal", "midfielder", "sweeper", "striker", "winger", "messi", "maradona", "pele", "penalty", "corner", "assist", "score", "referee", "pitch", "sideline", "turf", "cleats", "shinguards", "pass", "shoot", "nutmeg", "ball", "clearance", "cross", "header", "tackle", "foul"]
 
 //Start with score of 0
 var score = 0
@@ -21,7 +21,7 @@ var numWins = 0
 
 //Function to choose the word
 function chooseWord() {
-    secretWord = words[Math.floor(Math.random()*words.length)];
+    secretWord = words[Math.floor(Math.random()*words.length)].toUpperCase();
 }
 
 //Function to create display word
@@ -86,9 +86,14 @@ function wait(ms){
    }
  }
 
- //Function to play audio
-function playSound(){
+ //Function to play cheer
+function playCheer(){
     document.getElementById("sound").innerHTML='<audio autoplay="autoplay"> <source src="./assets/audio/cheer.mp3" type="audio/mp3"> </audio>';
+  }
+
+//Function to play cheer
+function playBoo(){
+    document.getElementById("sound").innerHTML='<audio autoplay="autoplay"> <source src="./assets/audio/boo.mp3" type="audio/mp3"> </audio>';
   }
 
 //Function to start a new game
@@ -116,7 +121,7 @@ document.onkeyup = function(event) {
 //If this is a letter that has not been previously guessed
     if (lettersGuessed.includes(event.key) === false && isLetter(event.key)) {
         guess = event.key;
-        guess = guess.toLowerCase();
+        guess = guess.toUpperCase();
 
 //Add the letter to list of guessed letters
         lettersGuessed = lettersGuessed + guess
@@ -159,12 +164,13 @@ document.onkeyup = function(event) {
 
     if (isWordGuessed()) {
         var cheer = document.getElementById("cheer");
-        playSound(cheer);
+        playCheer();
         updateWins();
         newGame();
     }
 
     if (numGuesses === 0) {
+        playBoo();
         newGame();
     }
 
