@@ -1,0 +1,32 @@
+header {
+    width:940px;
+    height:182px;
+    margin:auto;
+    padding:85px;
+    background-image:url("../images/soccer_banner.png");
+    color:white;
+    font-size:20px;
+    text-align:center;
+}
+
+.main {
+    width:940px;
+    margin:auto;
+    padding:20px;
+    text-align:center;
+}
+
+.left, .right {
+    width:400px;
+    float:left;
+}
+
+.left {
+    background:#666;
+}
+
+.right {}
+
+#display {
+    letter-spacing: 5px;
+}

@@ -6,17 +6,33 @@
     <title>Guess My Word</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
 </head>
 <body>
+    <audio id=cheer>
+        <source src="/assets/audio/cheer.mp3" type="audio/mp3">
+    </audio>
+    <header>
+    <div class="container-fluid">    
+        Sep's Hangman Game
+    </div>
+    </header>
+    <div class=main>
+    <div class=left>
+        <p>hi</p>
+    </div>
 
+    <div class=right>
     
     <p>Press any key to get started!!</p>
     <div id=wins>Wins: 0</div>
     <p id=display></p>
-    <div id=guesses>Guesses: 8</div><br>
+    <div id=guesses>Guesses: 8</div>
     <div id=letters>You have guessed the following letters:</div>
     <div id=lettersGuessed>Letters Guessed</div>
+    </div>
+    </div>
 
 <script src="assets/javascript/game.js"></script>
 </body>

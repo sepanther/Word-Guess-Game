@@ -143,6 +143,10 @@ document.onkeyup = function(event) {
     if (isWordGuessed() || numGuesses === 0) {
         newGame();
     }
+    if (isWordGuessed()) {
+        var cheer = document.getElementById("cheer");
+        cheer.play();    
+    }
 }
 }
 
