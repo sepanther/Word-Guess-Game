@@ -13,7 +13,7 @@ var workshop = ""
 
 //Start with empty lettersGuessed and wrongLetters string/array
 var lettersGuessed = ""
-var wrongLetters = []
+var wrongLetters = ""
 var numGuesses = 8
 var numWins = 0
 
@@ -47,7 +47,7 @@ function updateWord() {
 //Function to display word in DOM
 function updateDisplay() {
     document.getElementById("display").innerHTML = secretDisplay;
-    document.getElementById("lettersGuessed").innerHTML = lettersGuessed
+    document.getElementById("lettersGuessed").innerHTML = wrongLetters
 }
 
 //Function to update number of guesses
@@ -77,12 +77,18 @@ function wait(ms){
    }
  }
 
+ //Function to play audio
+function playSound(){
+    document.getElementById("sound").innerHTML='<audio autoplay="autoplay"> <source src="./assets/audio/cheer.mp3" type="audio/mp3"> </audio>';
+  }
+
 //Function to start a new game
 function newGame() {
     chooseWord();
     secretDisplay = "";
     workshop = "";
     lettersGuessed = "";
+    wrongLetters = "";
     numGuesses = 8;
     updateGuesses();
     createDisplay();
@@ -108,6 +114,7 @@ document.onkeyup = function(event) {
 //If the letter is not in the word
         if (secretWord.includes(guess) === false) {
             numGuesses -= 1;
+            wrongLetters = wrongLetters + guess.toUpperCase() + " "
             updateGuesses();
 
 //If the user is out of guesses
@@ -140,13 +147,15 @@ document.onkeyup = function(event) {
     // if (isWordGuessed() || document.getElementById("guesses").innerHTML === "Guesses: 0<div>You lose haha you suck</div>") {
     //     wait(3000);
 
+    if (isWordGuessed()) {
+        var cheer = document.getElementById("cheer");
+        playSound(cheer);
+    }
+
     if (isWordGuessed() || numGuesses === 0) {
         newGame();
     }
-    if (isWordGuessed()) {
-        var cheer = document.getElementById("cheer");
-        cheer.play();    
-    }
+
 }
 }
 
